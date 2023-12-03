@@ -34,47 +34,19 @@ Votre mission si vous l'acceptez est de créer une API simple de petites annonce
 - [x] 16. Installer le client prisma (paquet `@prisma/client`) en tant que dépendance du projet.
 - [x] 17. Initialiser `prisma` dans le projet Nest.
 - [x] 18. Importer ce schéma dans le projet Nest.
-<details>  
-<summary>Schéma</summary>
 
-```prisma
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DB_URL")
-}
-
-model Products {
-  UUID        String @id(map: "products_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
-  Name        String @db.VarChar(50)
-  Price       Int
-  Description String @db.Text()
-  authorUUID  String @db.VarChar(36) // Ref to UUIDv4
-  Author      Users  @relation(map: "product_author", fields: [authorUUID], references: [UUID])
-}
-
-model Users {
-  UUID     String     @id(map: "users_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
-  Pseudo   String     @unique() @db.VarChar(50)
-  Mail     String     @unique() @db.VarChar(75)
-  Products Products[]
-}
-```
 
 </details>
 
-- [ ] 19. Migrer le schéma vers la base de données.
-- [ ] 20. Créer le service `Prisma`.
-- [ ] 21. Vérifier que la structure de la base de données correspond à la définition du schéma Prisma.
+- [x] 19. Migrer le schéma vers la base de données.
+- [x] 20. Créer le service `Prisma`.
+- [x] 21. Vérifier que la structure de la base de données correspond à la définition du schéma Prisma.
 
 </details>
 <details open><summary><h2>Création des utilisateurs</h2></summary>
 
-- [ ] 22. Créer une nouvelle ressource (~=module) nommée `Users` avec "Nest CLI" (Note: Une ressource est un ensemble de : controller, service, module. On appelle aussi cela un module) (Puis laisser les options par défaut). 
-- [ ] 23. Ajouter les propriétés : `Pseudo` et `Mail` dans le DTO `create-user`.
+- [x] 22. Créer une nouvelle ressource (~=module) nommée `Users` avec "Nest CLI" (Note: Une ressource est un ensemble de : controller, service, module. On appelle aussi cela un module) (Puis laisser les options par défaut). 
+- [x] 23. Ajouter les propriétés : `Pseudo` et `Mail` dans le DTO `create-user`.
 - [ ] 24. Définir le service Prisma en tant que provider du module `Users`.
 - [ ] 25. Implémenter la logique de la route `create` du controller `User` afin de créer un nouvel utilisateur dans la base de données.
 - [ ] 26. Créer une route pour récupérer les informations d'un utilisateur par son UUID.
